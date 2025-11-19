@@ -6,35 +6,25 @@
   },
   "credentials": [
     {
-      "username": "seasonekey",
-      "password": "seasonekey",
+      "username": "user123",
+      "password": "pass123",
       "expire_date": "2026-01-09",
       "device_limit": 4
     },
     {
-      "username": "8dayskey",
-      "password": "8dayskey",
+      "username": "vip_user",
+      "password": "vip_password",
       "expire_date": "2025-11-24",
       "device_limit": 1
     },
     {
       "username": "7dayskey",
-      "password": "7dayskey",
-      "expire_date": "2025-11-25",
+      "password": "dayspass",
+      "expire_date": "2025-11-24",
       "device_limit": 1
-    },
-    {
-      "username": "testkey",
-      "password": "testpass",
-      "expire_date": "2025-10-12",
-      "device_limit": 1
-    },
-    {
-      "username": "testkey",
-      "password": "testpass",
-      "expire_date": "2025-10-15",
-      "device_limit": 1
-    },
+    }
+  ]
+}    },
     {
       "username": "testkey",
       "password": "testpass",
