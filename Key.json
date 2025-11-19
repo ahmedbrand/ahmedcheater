@@ -9,13 +9,13 @@
       "username": "seasonekey",
       "password": "seasonekey",
       "expire_date": "2026-01-09",
-      "device_limit": 3
+      "device_limit": 4
     },
     {
       "username": "8dayskey",
       "password": "8dayskey",
       "expire_date": "2025-11-24",
-      "device_limit": 3
+      "device_limit": 1
     },
     {
       "username": "7dayskey",
