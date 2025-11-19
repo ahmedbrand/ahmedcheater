@@ -1,0 +1,63 @@
+name: Deploy Static Website to GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # Triggers the workflow when a change is pushed to the 'main' branch
+
+# Sets permissions needed for the deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # The build job prepares the files for deployment
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        # This step sets up the GitHub Pages environment
+        uses: actions/configure-pages@v5
+
+      - name: Prepare Deployment Artifact
+        # Create the artifact directory, typically named '_site' or 'dist'
+        run: |
+          BUILD_DIR=_site
+          mkdir -p $BUILD_DIR
+          
+          # Copy all website files to the deployment directory
+          # The -r option copies directories recursively.
+          cp -r ./* $BUILD_DIR/
+          
+          # EXCLUSION LOGIC: Remove the specific file as requested (Key.json)
+          # We use -f to ignore the error if the file doesn't exist.
+          rm -f $BUILD_DIR/Key.json
+          
+          # Clean up unnecessary workflow files from the artifact
+          rm -rf $BUILD_DIR/.github
+          
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # The directory to upload (must match the directory created above)
+          path: '_site'
+
+  # The deploy job runs after the files are uploaded
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
