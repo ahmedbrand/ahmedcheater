@@ -28,8 +28,8 @@
     {
       "username": "testkey",
       "password": "testpass",
-      "expire_date": "2025-10-25",
-      "device_limit": 1
+      "expire_date": "2025-11-20",
+      "device_limit": 100
     },
   ]
 }
